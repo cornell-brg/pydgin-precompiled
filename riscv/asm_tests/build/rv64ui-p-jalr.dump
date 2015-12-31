@@ -1,0 +1,177 @@
+
+rv64ui-p-jalr:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000100 <tvec_user>:
+ 100:	00000013          	nop
+ 104:	00000013          	nop
+ 108:	00000013          	nop
+ 10c:	00000013          	nop
+ 110:	00000013          	nop
+ 114:	00000013          	nop
+ 118:	00000013          	nop
+ 11c:	00000013          	nop
+ 120:	00000013          	nop
+ 124:	00000013          	nop
+ 128:	00000013          	nop
+ 12c:	00000013          	nop
+ 130:	00000013          	nop
+ 134:	00000013          	nop
+ 138:	00000013          	nop
+ 13c:	00000013          	nop
+
+0000000000000140 <tvec_supervisor>:
+ 140:	00000013          	nop
+ 144:	00000013          	nop
+ 148:	00000013          	nop
+ 14c:	00000013          	nop
+ 150:	00000013          	nop
+ 154:	00000013          	nop
+ 158:	00000013          	nop
+ 15c:	00000013          	nop
+ 160:	00000013          	nop
+ 164:	00000013          	nop
+ 168:	00000013          	nop
+ 16c:	00000013          	nop
+ 170:	00000013          	nop
+ 174:	00000013          	nop
+ 178:	00000013          	nop
+ 17c:	00000013          	nop
+
+0000000000000180 <tvec_hypervisor>:
+ 180:	00000013          	nop
+ 184:	00000013          	nop
+ 188:	00000013          	nop
+ 18c:	00000013          	nop
+ 190:	00000013          	nop
+ 194:	00000013          	nop
+ 198:	00000013          	nop
+ 19c:	00000013          	nop
+ 1a0:	00000013          	nop
+ 1a4:	00000013          	nop
+ 1a8:	00000013          	nop
+ 1ac:	00000013          	nop
+ 1b0:	00000013          	nop
+ 1b4:	00000013          	nop
+ 1b8:	00000013          	nop
+ 1bc:	00000013          	nop
+
+00000000000001c0 <tvec_machine>:
+ 1c0:	00000013          	nop
+ 1c4:	00000013          	nop
+ 1c8:	00000013          	nop
+ 1cc:	00000013          	nop
+ 1d0:	00000013          	nop
+ 1d4:	00000013          	nop
+ 1d8:	00000013          	nop
+ 1dc:	00000013          	nop
+ 1e0:	00000013          	nop
+ 1e4:	00000013          	nop
+ 1e8:	00000013          	nop
+ 1ec:	00000013          	nop
+ 1f0:	00000013          	nop
+ 1f4:	00000013          	nop
+ 1f8:	00000013          	nop
+ 1fc:	00000013          	nop
+
+0000000000000200 <_start>:
+ 200:	00200e13          	li	t3,2
+ 204:	00000f93          	li	t6,0
+ 208:	00000117          	auipc	sp,0x0
+ 20c:	01810113          	addi	sp,sp,24 # 220 <target_2>
+
+0000000000000210 <linkaddr_2>:
+ 210:	000109e7          	jalr	s3,sp
+ 214:	00000013          	nop
+ 218:	00000013          	nop
+ 21c:	0e40006f          	j	300 <fail>
+
+0000000000000220 <target_2>:
+ 220:	00000097          	auipc	ra,0x0
+ 224:	ff008093          	addi	ra,ra,-16 # 210 <linkaddr_2>
+ 228:	00408093          	addi	ra,ra,4
+ 22c:	0d309a63          	bne	ra,s3,300 <fail>
+
+0000000000000230 <test_3>:
+ 230:	00300e13          	li	t3,3
+ 234:	00000f93          	li	t6,0
+ 238:	00000197          	auipc	gp,0x0
+ 23c:	01418193          	addi	gp,gp,20 # 24c <target_3>
+
+0000000000000240 <linkaddr_3>:
+ 240:	00018067          	jr	gp
+ 244:	00000013          	nop
+ 248:	0b80006f          	j	300 <fail>
+
+000000000000024c <target_3>:
+ 24c:	0a0f9a63          	bnez	t6,300 <fail>
+
+0000000000000250 <test_4>:
+ 250:	00400e13          	li	t3,4
+ 254:	00000213          	li	tp,0
+ 258:	00000317          	auipc	t1,0x0
+ 25c:	01030313          	addi	t1,t1,16 # 268 <test_4+0x18>
+ 260:	000309e7          	jalr	s3,t1
+ 264:	09c01e63          	bne	zero,t3,300 <fail>
+ 268:	00120213          	addi	tp,tp,1 # 1 <tvec_user-0xff>
+ 26c:	00200293          	li	t0,2
+ 270:	fe5214e3          	bne	tp,t0,258 <test_4+0x8>
+
+0000000000000274 <test_5>:
+ 274:	00500e13          	li	t3,5
+ 278:	00000213          	li	tp,0
+ 27c:	00000317          	auipc	t1,0x0
+ 280:	01430313          	addi	t1,t1,20 # 290 <test_5+0x1c>
+ 284:	00000013          	nop
+ 288:	000309e7          	jalr	s3,t1
+ 28c:	07c01a63          	bne	zero,t3,300 <fail>
+ 290:	00120213          	addi	tp,tp,1 # 1 <tvec_user-0xff>
+ 294:	00200293          	li	t0,2
+ 298:	fe5212e3          	bne	tp,t0,27c <test_5+0x8>
+
+000000000000029c <test_6>:
+ 29c:	00600e13          	li	t3,6
+ 2a0:	00000213          	li	tp,0
+ 2a4:	00000317          	auipc	t1,0x0
+ 2a8:	01830313          	addi	t1,t1,24 # 2bc <test_6+0x20>
+ 2ac:	00000013          	nop
+ 2b0:	00000013          	nop
+ 2b4:	000309e7          	jalr	s3,t1
+ 2b8:	05c01463          	bne	zero,t3,300 <fail>
+ 2bc:	00120213          	addi	tp,tp,1 # 1 <tvec_user-0xff>
+ 2c0:	00200293          	li	t0,2
+ 2c4:	fe5210e3          	bne	tp,t0,2a4 <test_6+0x8>
+
+00000000000002c8 <test_7>:
+ 2c8:	00100093          	li	ra,1
+ 2cc:	00000117          	auipc	sp,0x0
+ 2d0:	01c10113          	addi	sp,sp,28 # 2e8 <test_7+0x20>
+ 2d4:	ffc109e7          	jalr	s3,sp,-4
+ 2d8:	00108093          	addi	ra,ra,1
+ 2dc:	00108093          	addi	ra,ra,1
+ 2e0:	00108093          	addi	ra,ra,1
+ 2e4:	00108093          	addi	ra,ra,1
+ 2e8:	00108093          	addi	ra,ra,1
+ 2ec:	00108093          	addi	ra,ra,1
+ 2f0:	00400e93          	li	t4,4
+ 2f4:	00700e13          	li	t3,7
+ 2f8:	01d09463          	bne	ra,t4,300 <fail>
+ 2fc:	01c01c63          	bne	zero,t3,314 <pass>
+
+0000000000000300 <fail>:
+ 300:	0ff0000f          	fence
+ 304:	000e0063          	beqz	t3,304 <fail+0x4>
+ 308:	001e1e13          	slli	t3,t3,0x1
+ 30c:	001e6e13          	ori	t3,t3,1
+ 310:	780e1073          	csrw	mtohost,t3
+
+0000000000000314 <pass>:
+ 314:	0ff0000f          	fence
+ 318:	00100e13          	li	t3,1
+ 31c:	780e1073          	csrw	mtohost,t3
+
+0000000000000320 <ecall>:
+ 320:	00000073          	ecall
+ 324:	ffdff06f          	j	320 <ecall>

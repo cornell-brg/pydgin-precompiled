@@ -1,0 +1,430 @@
+
+rv64uf-p-fcvt:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000100 <tvec_user>:
+ 100:	00000013          	nop
+ 104:	00000013          	nop
+ 108:	00000013          	nop
+ 10c:	00000013          	nop
+ 110:	00000013          	nop
+ 114:	00000013          	nop
+ 118:	00000013          	nop
+ 11c:	00000013          	nop
+ 120:	00000013          	nop
+ 124:	00000013          	nop
+ 128:	00000013          	nop
+ 12c:	00000013          	nop
+ 130:	00000013          	nop
+ 134:	00000013          	nop
+ 138:	00000013          	nop
+ 13c:	00000013          	nop
+
+0000000000000140 <tvec_supervisor>:
+ 140:	00000013          	nop
+ 144:	00000013          	nop
+ 148:	00000013          	nop
+ 14c:	00000013          	nop
+ 150:	00000013          	nop
+ 154:	00000013          	nop
+ 158:	00000013          	nop
+ 15c:	00000013          	nop
+ 160:	00000013          	nop
+ 164:	00000013          	nop
+ 168:	00000013          	nop
+ 16c:	00000013          	nop
+ 170:	00000013          	nop
+ 174:	00000013          	nop
+ 178:	00000013          	nop
+ 17c:	00000013          	nop
+
+0000000000000180 <tvec_hypervisor>:
+ 180:	00000013          	nop
+ 184:	00000013          	nop
+ 188:	00000013          	nop
+ 18c:	00000013          	nop
+ 190:	00000013          	nop
+ 194:	00000013          	nop
+ 198:	00000013          	nop
+ 19c:	00000013          	nop
+ 1a0:	00000013          	nop
+ 1a4:	00000013          	nop
+ 1a8:	00000013          	nop
+ 1ac:	00000013          	nop
+ 1b0:	00000013          	nop
+ 1b4:	00000013          	nop
+ 1b8:	00000013          	nop
+ 1bc:	00000013          	nop
+
+00000000000001c0 <tvec_machine>:
+ 1c0:	00000013          	nop
+ 1c4:	00000013          	nop
+ 1c8:	00000013          	nop
+ 1cc:	00000013          	nop
+ 1d0:	00000013          	nop
+ 1d4:	00000013          	nop
+ 1d8:	00000013          	nop
+ 1dc:	00000013          	nop
+ 1e0:	00000013          	nop
+ 1e4:	00000013          	nop
+ 1e8:	00000013          	nop
+ 1ec:	00000013          	nop
+ 1f0:	00000013          	nop
+ 1f4:	00000013          	nop
+ 1f8:	00000013          	nop
+ 1fc:	00000013          	nop
+
+0000000000000200 <_start>:
+ 200:	00200e13          	li	t3,2
+ 204:	00000517          	auipc	a0,0x0
+ 208:	02450513          	addi	a0,a0,36 # 228 <test_2_data>
+ 20c:	00052683          	lw	a3,0(a0)
+ 210:	00200513          	li	a0,2
+ 214:	d0057053          	fcvt.s.w	ft0,a0
+ 218:	00101073          	fsflags	zero
+ 21c:	e0000553          	fmv.x.s	a0,ft0
+ 220:	32d51e63          	bne	a0,a3,55c <fail>
+ 224:	0080006f          	j	22c <test_3>
+
+0000000000000228 <test_2_data>:
+ 228:	0000                	unimp
+ 22a:	4000                	sw	s0,0(s0)
+
+000000000000022c <test_3>:
+ 22c:	00300e13          	li	t3,3
+ 230:	00000517          	auipc	a0,0x0
+ 234:	02450513          	addi	a0,a0,36 # 254 <test_3_data>
+ 238:	00052683          	lw	a3,0(a0)
+ 23c:	ffe00513          	li	a0,-2
+ 240:	d0057053          	fcvt.s.w	ft0,a0
+ 244:	00101073          	fsflags	zero
+ 248:	e0000553          	fmv.x.s	a0,ft0
+ 24c:	30d51863          	bne	a0,a3,55c <fail>
+ 250:	0080006f          	j	258 <test_4>
+
+0000000000000254 <test_3_data>:
+ 254:	0000                	unimp
+ 256:	c000                	lw	s0,0(s0)
+
+0000000000000258 <test_4>:
+ 258:	00400e13          	li	t3,4
+ 25c:	00000517          	auipc	a0,0x0
+ 260:	02450513          	addi	a0,a0,36 # 280 <test_4_data>
+ 264:	00052683          	lw	a3,0(a0)
+ 268:	00200513          	li	a0,2
+ 26c:	d0157053          	fcvt.s.wu	ft0,a0
+ 270:	00101073          	fsflags	zero
+ 274:	e0000553          	fmv.x.s	a0,ft0
+ 278:	2ed51263          	bne	a0,a3,55c <fail>
+ 27c:	0080006f          	j	284 <test_5>
+
+0000000000000280 <test_4_data>:
+ 280:	0000                	unimp
+ 282:	4000                	sw	s0,0(s0)
+
+0000000000000284 <test_5>:
+ 284:	00500e13          	li	t3,5
+ 288:	00000517          	auipc	a0,0x0
+ 28c:	02450513          	addi	a0,a0,36 # 2ac <test_5_data>
+ 290:	00052683          	lw	a3,0(a0)
+ 294:	ffe00513          	li	a0,-2
+ 298:	d0157053          	fcvt.s.wu	ft0,a0
+ 29c:	00101073          	fsflags	zero
+ 2a0:	e0000553          	fmv.x.s	a0,ft0
+ 2a4:	2ad51c63          	bne	a0,a3,55c <fail>
+ 2a8:	0080006f          	j	2b0 <test_6>
+
+00000000000002ac <test_5_data>:
+ 2ac:	0000                	unimp
+ 2ae:	4f80                	sw	s0,24(a5)
+
+00000000000002b0 <test_6>:
+ 2b0:	00600e13          	li	t3,6
+ 2b4:	00000517          	auipc	a0,0x0
+ 2b8:	02450513          	addi	a0,a0,36 # 2d8 <test_6_data>
+ 2bc:	00052683          	lw	a3,0(a0)
+ 2c0:	00200513          	li	a0,2
+ 2c4:	d0257053          	fcvt.s.l	ft0,a0
+ 2c8:	00101073          	fsflags	zero
+ 2cc:	e0000553          	fmv.x.s	a0,ft0
+ 2d0:	28d51663          	bne	a0,a3,55c <fail>
+ 2d4:	0080006f          	j	2dc <test_7>
+
+00000000000002d8 <test_6_data>:
+ 2d8:	0000                	unimp
+ 2da:	4000                	sw	s0,0(s0)
+
+00000000000002dc <test_7>:
+ 2dc:	00700e13          	li	t3,7
+ 2e0:	00000517          	auipc	a0,0x0
+ 2e4:	02450513          	addi	a0,a0,36 # 304 <test_7_data>
+ 2e8:	00052683          	lw	a3,0(a0)
+ 2ec:	ffe00513          	li	a0,-2
+ 2f0:	d0257053          	fcvt.s.l	ft0,a0
+ 2f4:	00101073          	fsflags	zero
+ 2f8:	e0000553          	fmv.x.s	a0,ft0
+ 2fc:	26d51063          	bne	a0,a3,55c <fail>
+ 300:	0080006f          	j	308 <test_8>
+
+0000000000000304 <test_7_data>:
+ 304:	0000                	unimp
+ 306:	c000                	lw	s0,0(s0)
+
+0000000000000308 <test_8>:
+ 308:	00800e13          	li	t3,8
+ 30c:	00000517          	auipc	a0,0x0
+ 310:	02450513          	addi	a0,a0,36 # 330 <test_8_data>
+ 314:	00052683          	lw	a3,0(a0)
+ 318:	00200513          	li	a0,2
+ 31c:	d0357053          	fcvt.s.lu	ft0,a0
+ 320:	00101073          	fsflags	zero
+ 324:	e0000553          	fmv.x.s	a0,ft0
+ 328:	22d51a63          	bne	a0,a3,55c <fail>
+ 32c:	0080006f          	j	334 <test_9>
+
+0000000000000330 <test_8_data>:
+ 330:	0000                	unimp
+ 332:	4000                	sw	s0,0(s0)
+
+0000000000000334 <test_9>:
+ 334:	00900e13          	li	t3,9
+ 338:	00000517          	auipc	a0,0x0
+ 33c:	02450513          	addi	a0,a0,36 # 35c <test_9_data>
+ 340:	00052683          	lw	a3,0(a0)
+ 344:	ffe00513          	li	a0,-2
+ 348:	d0357053          	fcvt.s.lu	ft0,a0
+ 34c:	00101073          	fsflags	zero
+ 350:	e0000553          	fmv.x.s	a0,ft0
+ 354:	20d51463          	bne	a0,a3,55c <fail>
+ 358:	0080006f          	j	360 <test_12>
+
+000000000000035c <test_9_data>:
+ 35c:	0000                	unimp
+ 35e:	5f80                	sw	s0,56(a5)
+
+0000000000000360 <test_12>:
+ 360:	00c00e13          	li	t3,12
+ 364:	00000517          	auipc	a0,0x0
+ 368:	02450513          	addi	a0,a0,36 # 388 <test_12_data>
+ 36c:	00053683          	ld	a3,0(a0)
+ 370:	00200513          	li	a0,2
+ 374:	d2050053          	fcvt.d.w	ft0,a0
+ 378:	00101073          	fsflags	zero
+ 37c:	e2000553          	fmv.x.d	a0,ft0
+ 380:	1cd51e63          	bne	a0,a3,55c <fail>
+ 384:	00c0006f          	j	390 <test_13>
+
+0000000000000388 <test_12_data>:
+ 388:	0000                	unimp
+ 38a:	0000                	unimp
+ 38c:	0000                	unimp
+ 38e:	4000                	sw	s0,0(s0)
+
+0000000000000390 <test_13>:
+ 390:	00d00e13          	li	t3,13
+ 394:	00000517          	auipc	a0,0x0
+ 398:	02450513          	addi	a0,a0,36 # 3b8 <test_13_data>
+ 39c:	00053683          	ld	a3,0(a0)
+ 3a0:	ffe00513          	li	a0,-2
+ 3a4:	d2050053          	fcvt.d.w	ft0,a0
+ 3a8:	00101073          	fsflags	zero
+ 3ac:	e2000553          	fmv.x.d	a0,ft0
+ 3b0:	1ad51663          	bne	a0,a3,55c <fail>
+ 3b4:	00c0006f          	j	3c0 <test_14>
+
+00000000000003b8 <test_13_data>:
+ 3b8:	0000                	unimp
+ 3ba:	0000                	unimp
+ 3bc:	0000                	unimp
+ 3be:	c000                	lw	s0,0(s0)
+
+00000000000003c0 <test_14>:
+ 3c0:	00e00e13          	li	t3,14
+ 3c4:	00000517          	auipc	a0,0x0
+ 3c8:	02450513          	addi	a0,a0,36 # 3e8 <test_14_data>
+ 3cc:	00053683          	ld	a3,0(a0)
+ 3d0:	00200513          	li	a0,2
+ 3d4:	d2150053          	fcvt.d.wu	ft0,a0
+ 3d8:	00101073          	fsflags	zero
+ 3dc:	e2000553          	fmv.x.d	a0,ft0
+ 3e0:	16d51e63          	bne	a0,a3,55c <fail>
+ 3e4:	00c0006f          	j	3f0 <test_15>
+
+00000000000003e8 <test_14_data>:
+ 3e8:	0000                	unimp
+ 3ea:	0000                	unimp
+ 3ec:	0000                	unimp
+ 3ee:	4000                	sw	s0,0(s0)
+
+00000000000003f0 <test_15>:
+ 3f0:	00f00e13          	li	t3,15
+ 3f4:	00000517          	auipc	a0,0x0
+ 3f8:	02450513          	addi	a0,a0,36 # 418 <test_15_data>
+ 3fc:	00053683          	ld	a3,0(a0)
+ 400:	ffe00513          	li	a0,-2
+ 404:	d2150053          	fcvt.d.wu	ft0,a0
+ 408:	00101073          	fsflags	zero
+ 40c:	e2000553          	fmv.x.d	a0,ft0
+ 410:	14d51663          	bne	a0,a3,55c <fail>
+ 414:	00c0006f          	j	420 <test_16>
+
+0000000000000418 <test_15_data>:
+ 418:	0000                	unimp
+ 41a:	ffc0                	ld	s0,184(a5)
+ 41c:	ffff                	0xffff
+ 41e:	0e1341ef          	jal	gp,34cfe <_end+0x33cce>
+
+0000000000000420 <test_16>:
+ 420:	01000e13          	li	t3,16
+ 424:	00000517          	auipc	a0,0x0
+ 428:	02450513          	addi	a0,a0,36 # 448 <test_16_data>
+ 42c:	00053683          	ld	a3,0(a0)
+ 430:	00200513          	li	a0,2
+ 434:	d2257053          	fcvt.d.l	ft0,a0
+ 438:	00101073          	fsflags	zero
+ 43c:	e2000553          	fmv.x.d	a0,ft0
+ 440:	10d51e63          	bne	a0,a3,55c <fail>
+ 444:	00c0006f          	j	450 <test_17>
+
+0000000000000448 <test_16_data>:
+ 448:	0000                	unimp
+ 44a:	0000                	unimp
+ 44c:	0000                	unimp
+ 44e:	4000                	sw	s0,0(s0)
+
+0000000000000450 <test_17>:
+ 450:	01100e13          	li	t3,17
+ 454:	00000517          	auipc	a0,0x0
+ 458:	02450513          	addi	a0,a0,36 # 478 <test_17_data>
+ 45c:	00053683          	ld	a3,0(a0)
+ 460:	ffe00513          	li	a0,-2
+ 464:	d2257053          	fcvt.d.l	ft0,a0
+ 468:	00101073          	fsflags	zero
+ 46c:	e2000553          	fmv.x.d	a0,ft0
+ 470:	0ed51663          	bne	a0,a3,55c <fail>
+ 474:	00c0006f          	j	480 <test_18>
+
+0000000000000478 <test_17_data>:
+ 478:	0000                	unimp
+ 47a:	0000                	unimp
+ 47c:	0000                	unimp
+ 47e:	c000                	lw	s0,0(s0)
+
+0000000000000480 <test_18>:
+ 480:	01200e13          	li	t3,18
+ 484:	00000517          	auipc	a0,0x0
+ 488:	02450513          	addi	a0,a0,36 # 4a8 <test_18_data>
+ 48c:	00053683          	ld	a3,0(a0)
+ 490:	00200513          	li	a0,2
+ 494:	d2357053          	fcvt.d.lu	ft0,a0
+ 498:	00101073          	fsflags	zero
+ 49c:	e2000553          	fmv.x.d	a0,ft0
+ 4a0:	0ad51e63          	bne	a0,a3,55c <fail>
+ 4a4:	00c0006f          	j	4b0 <test_19>
+
+00000000000004a8 <test_18_data>:
+ 4a8:	0000                	unimp
+ 4aa:	0000                	unimp
+ 4ac:	0000                	unimp
+ 4ae:	4000                	sw	s0,0(s0)
+
+00000000000004b0 <test_19>:
+ 4b0:	01300e13          	li	t3,19
+ 4b4:	00000517          	auipc	a0,0x0
+ 4b8:	02450513          	addi	a0,a0,36 # 4d8 <test_19_data>
+ 4bc:	00053683          	ld	a3,0(a0)
+ 4c0:	ffe00513          	li	a0,-2
+ 4c4:	d2357053          	fcvt.d.lu	ft0,a0
+ 4c8:	00101073          	fsflags	zero
+ 4cc:	e2000553          	fmv.x.d	a0,ft0
+ 4d0:	08d51663          	bne	a0,a3,55c <fail>
+ 4d4:	00c0006f          	j	4e0 <test_20>
+
+00000000000004d8 <test_19_data>:
+ 4d8:	0000                	unimp
+ 4da:	0000                	unimp
+ 4dc:	0000                	unimp
+ 4de:	43f0                	sw	a2,68(a5)
+
+00000000000004e0 <test_20>:
+ 4e0:	01400e13          	li	t3,20
+ 4e4:	00001517          	auipc	a0,0x1
+ 4e8:	b1c50513          	addi	a0,a0,-1252 # 1000 <test_20_data>
+ 4ec:	00053007          	fld	ft0,0(a0)
+ 4f0:	00853087          	fld	ft1,8(a0)
+ 4f4:	01053107          	fld	ft2,16(a0)
+ 4f8:	01853683          	ld	a3,24(a0)
+ 4fc:	401071d3          	fcvt.s.d	ft3,ft0
+ 500:	420181d3          	fcvt.d.s	ft3,ft3
+ 504:	e2018553          	fmv.x.d	a0,ft3
+ 508:	001015f3          	fsflags	a1,zero
+ 50c:	00000613          	li	a2,0
+ 510:	04d51663          	bne	a0,a3,55c <fail>
+ 514:	04c59463          	bne	a1,a2,55c <fail>
+ 518:	0040006f          	j	51c <test_21>
+
+000000000000051c <test_21>:
+ 51c:	01500e13          	li	t3,21
+ 520:	00001517          	auipc	a0,0x1
+ 524:	b0050513          	addi	a0,a0,-1280 # 1020 <test_21_data>
+ 528:	00052007          	flw	ft0,0(a0)
+ 52c:	00452087          	flw	ft1,4(a0)
+ 530:	00852107          	flw	ft2,8(a0)
+ 534:	00c52683          	lw	a3,12(a0)
+ 538:	420001d3          	fcvt.d.s	ft3,ft0
+ 53c:	4011f1d3          	fcvt.s.d	ft3,ft3
+ 540:	e0018553          	fmv.x.s	a0,ft3
+ 544:	001015f3          	fsflags	a1,zero
+ 548:	00000613          	li	a2,0
+ 54c:	00d51863          	bne	a0,a3,55c <fail>
+ 550:	00c59663          	bne	a1,a2,55c <fail>
+ 554:	0040006f          	j	558 <test_21+0x3c>
+ 558:	01c01c63          	bne	zero,t3,570 <pass>
+
+000000000000055c <fail>:
+ 55c:	0ff0000f          	fence
+ 560:	000e0063          	beqz	t3,560 <fail+0x4>
+ 564:	001e1e13          	slli	t3,t3,0x1
+ 568:	001e6e13          	ori	t3,t3,1
+ 56c:	780e1073          	csrw	mtohost,t3
+
+0000000000000570 <pass>:
+ 570:	0ff0000f          	fence
+ 574:	00100e13          	li	t3,1
+ 578:	780e1073          	csrw	mtohost,t3
+
+000000000000057c <ecall>:
+ 57c:	00000073          	ecall
+ 580:	ffdff06f          	j	57c <ecall>
+
+Disassembly of section .data:
+
+0000000000001000 <test_20_data>:
+    1000:	0000                	unimp
+    1002:	0000                	unimp
+    1004:	0000                	unimp
+    1006:	bff8                	and	a5,a5,a4
+    1008:	0000                	unimp
+    100a:	0000                	unimp
+    100c:	0000                	unimp
+    100e:	0000                	unimp
+    1010:	0000                	unimp
+    1012:	0000                	unimp
+    1014:	0000                	unimp
+    1016:	0000                	unimp
+    1018:	0000                	unimp
+    101a:	0000                	unimp
+    101c:	0000                	unimp
+    101e:	bff8                	and	a5,a5,a4
+
+0000000000001020 <test_21_data>:
+    1020:	0000                	unimp
+    1022:	bfc0                	or	a5,a5,s0
+    1024:	0000                	unimp
+    1026:	0000                	unimp
+    1028:	0000                	unimp
+    102a:	0000                	unimp
+    102c:	0000                	unimp
+    102e:	bfc0                	or	a5,a5,s0

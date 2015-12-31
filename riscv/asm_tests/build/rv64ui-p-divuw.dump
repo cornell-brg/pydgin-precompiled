@@ -1,0 +1,169 @@
+
+rv64ui-p-divuw:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000100 <tvec_user>:
+ 100:	00000013          	nop
+ 104:	00000013          	nop
+ 108:	00000013          	nop
+ 10c:	00000013          	nop
+ 110:	00000013          	nop
+ 114:	00000013          	nop
+ 118:	00000013          	nop
+ 11c:	00000013          	nop
+ 120:	00000013          	nop
+ 124:	00000013          	nop
+ 128:	00000013          	nop
+ 12c:	00000013          	nop
+ 130:	00000013          	nop
+ 134:	00000013          	nop
+ 138:	00000013          	nop
+ 13c:	00000013          	nop
+
+0000000000000140 <tvec_supervisor>:
+ 140:	00000013          	nop
+ 144:	00000013          	nop
+ 148:	00000013          	nop
+ 14c:	00000013          	nop
+ 150:	00000013          	nop
+ 154:	00000013          	nop
+ 158:	00000013          	nop
+ 15c:	00000013          	nop
+ 160:	00000013          	nop
+ 164:	00000013          	nop
+ 168:	00000013          	nop
+ 16c:	00000013          	nop
+ 170:	00000013          	nop
+ 174:	00000013          	nop
+ 178:	00000013          	nop
+ 17c:	00000013          	nop
+
+0000000000000180 <tvec_hypervisor>:
+ 180:	00000013          	nop
+ 184:	00000013          	nop
+ 188:	00000013          	nop
+ 18c:	00000013          	nop
+ 190:	00000013          	nop
+ 194:	00000013          	nop
+ 198:	00000013          	nop
+ 19c:	00000013          	nop
+ 1a0:	00000013          	nop
+ 1a4:	00000013          	nop
+ 1a8:	00000013          	nop
+ 1ac:	00000013          	nop
+ 1b0:	00000013          	nop
+ 1b4:	00000013          	nop
+ 1b8:	00000013          	nop
+ 1bc:	00000013          	nop
+
+00000000000001c0 <tvec_machine>:
+ 1c0:	00000013          	nop
+ 1c4:	00000013          	nop
+ 1c8:	00000013          	nop
+ 1cc:	00000013          	nop
+ 1d0:	00000013          	nop
+ 1d4:	00000013          	nop
+ 1d8:	00000013          	nop
+ 1dc:	00000013          	nop
+ 1e0:	00000013          	nop
+ 1e4:	00000013          	nop
+ 1e8:	00000013          	nop
+ 1ec:	00000013          	nop
+ 1f0:	00000013          	nop
+ 1f4:	00000013          	nop
+ 1f8:	00000013          	nop
+ 1fc:	00000013          	nop
+
+0000000000000200 <_start>:
+ 200:	01400093          	li	ra,20
+ 204:	00600113          	li	sp,6
+ 208:	0220d1bb          	divuw	gp,ra,sp
+ 20c:	00300e93          	li	t4,3
+ 210:	00200e13          	li	t3,2
+ 214:	0dd19a63          	bne	gp,t4,2e8 <fail>
+
+0000000000000218 <test_3>:
+ 218:	0010009b          	addiw	ra,zero,1
+ 21c:	02009093          	slli	ra,ra,0x20
+ 220:	fec08093          	addi	ra,ra,-20
+ 224:	00600113          	li	sp,6
+ 228:	0220d1bb          	divuw	gp,ra,sp
+ 22c:	2aaabeb7          	lui	t4,0x2aaab
+ 230:	aa7e8e9b          	addiw	t4,t4,-1369
+ 234:	00300e13          	li	t3,3
+ 238:	0bd19863          	bne	gp,t4,2e8 <fail>
+
+000000000000023c <test_4>:
+ 23c:	01400093          	li	ra,20
+ 240:	ffa00113          	li	sp,-6
+ 244:	0220d1bb          	divuw	gp,ra,sp
+ 248:	00000e93          	li	t4,0
+ 24c:	00400e13          	li	t3,4
+ 250:	09d19c63          	bne	gp,t4,2e8 <fail>
+
+0000000000000254 <test_5>:
+ 254:	fec00093          	li	ra,-20
+ 258:	ffa00113          	li	sp,-6
+ 25c:	0220d1bb          	divuw	gp,ra,sp
+ 260:	00000e93          	li	t4,0
+ 264:	00500e13          	li	t3,5
+ 268:	09d19063          	bne	gp,t4,2e8 <fail>
+
+000000000000026c <test_6>:
+ 26c:	800000b7          	lui	ra,0x80000
+ 270:	00100113          	li	sp,1
+ 274:	0220d1bb          	divuw	gp,ra,sp
+ 278:	80000eb7          	lui	t4,0x80000
+ 27c:	00600e13          	li	t3,6
+ 280:	07d19463          	bne	gp,t4,2e8 <fail>
+
+0000000000000284 <test_7>:
+ 284:	800000b7          	lui	ra,0x80000
+ 288:	fff00113          	li	sp,-1
+ 28c:	0220d1bb          	divuw	gp,ra,sp
+ 290:	00000e93          	li	t4,0
+ 294:	00700e13          	li	t3,7
+ 298:	05d19863          	bne	gp,t4,2e8 <fail>
+
+000000000000029c <test_8>:
+ 29c:	800000b7          	lui	ra,0x80000
+ 2a0:	00000113          	li	sp,0
+ 2a4:	0220d1bb          	divuw	gp,ra,sp
+ 2a8:	fff00e93          	li	t4,-1
+ 2ac:	00800e13          	li	t3,8
+ 2b0:	03d19c63          	bne	gp,t4,2e8 <fail>
+
+00000000000002b4 <test_9>:
+ 2b4:	00100093          	li	ra,1
+ 2b8:	00000113          	li	sp,0
+ 2bc:	0220d1bb          	divuw	gp,ra,sp
+ 2c0:	fff00e93          	li	t4,-1
+ 2c4:	00900e13          	li	t3,9
+ 2c8:	03d19063          	bne	gp,t4,2e8 <fail>
+
+00000000000002cc <test_10>:
+ 2cc:	00000093          	li	ra,0
+ 2d0:	00000113          	li	sp,0
+ 2d4:	0220d1bb          	divuw	gp,ra,sp
+ 2d8:	fff00e93          	li	t4,-1
+ 2dc:	00a00e13          	li	t3,10
+ 2e0:	01d19463          	bne	gp,t4,2e8 <fail>
+ 2e4:	01c01c63          	bne	zero,t3,2fc <pass>
+
+00000000000002e8 <fail>:
+ 2e8:	0ff0000f          	fence
+ 2ec:	000e0063          	beqz	t3,2ec <fail+0x4>
+ 2f0:	001e1e13          	slli	t3,t3,0x1
+ 2f4:	001e6e13          	ori	t3,t3,1
+ 2f8:	780e1073          	csrw	mtohost,t3
+
+00000000000002fc <pass>:
+ 2fc:	0ff0000f          	fence
+ 300:	00100e13          	li	t3,1
+ 304:	780e1073          	csrw	mtohost,t3
+
+0000000000000308 <ecall>:
+ 308:	00000073          	ecall
+ 30c:	ffdff06f          	j	308 <ecall>
